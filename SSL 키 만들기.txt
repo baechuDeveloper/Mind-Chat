@@ -1,0 +1,17 @@
+
+keytool을 통해서 소켓서버에 키를 생성하게 해준다. 클라이언트들은 이 키가 있어야만 연결이 가능하게된다. 
+아래의 일련의 과정을 하면 된다.
+
+keytool -genkey -alias SSLSocketServer -keyalg RSA -v -storetype JKS -keystore .keystore\SSLSocketServerKey
+
+
+keytool -export -keystore .keystore\SSLSocketServerKey -alias SSLSocketServer -file .keystore\SSLSocketServerKey.cert
+
+
+copy .keystore\SSLSocketServerKey.cert .
+
+
+keytool -import -keystore trustedcerts -alias SSLSocketServer -file SSLSocketServerKey.cert
+
+
+
